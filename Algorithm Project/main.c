@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 #define UP 0
 #define DOWN 1
 #define LEFT 2
@@ -47,6 +48,15 @@ void Heap_Sort();
 int findMax(int, int);
 void radixSort(int, int);
 void Radix_Sort();
+void Depth_First_Search();
+void Breadth_first_search();
+void Kruskal_Algorithm();
+void Prims_Algorithm();
+void Topological_sort();
+void AStar_Algorithm();
+void Genetic_Algorithm();
+void State_Space_Search();
+
 # define MAX_SIZE 20
 int sorted[MAX_SIZE];
 #define MAX_VERTICES 100
@@ -56,105 +66,114 @@ int sorted[MAX_SIZE];
 
 /* 함수 구현 */
 
-void previoustitleScreen() {
+int previoustitleScreen() {
 	system("cls"); // 화면 지우기
-
-	titleDraw();
-	int menuCode = menuDraw();
-	if (menuCode == 0) {
-		// 정복하기
-		int ChooseNum = ChooseDraw();
-		int x = ChooseNum / 100;
-		int y = ChooseNum % 100;
-		if (x == 10) {
-			if (y == 0) {
-				Bubble_Sort();
+	while (1) {
+		titleDraw();
+		int menuCode = menuDraw();
+		if (menuCode == 0) {
+			// 정복하기
+			int ChooseNum = ChooseDraw();
+			int x = ChooseNum / 100;
+			int y = ChooseNum % 100;
+			if (x == 10) {
+				if (y == 0) {
+					Bubble_Sort();
+				}
 			}
-		}
-		else if (x == 45) {
-			if (y == 0) {
-				Depth_First_Search();
+			else if (x == 45) {
+				if (y == 0) {
+					Depth_First_Search();
+				}
 			}
-		}
 
-		if (x == 10) {
-			if (y == 2) {
-				Selection_Sort();
+			if (x == 10) {
+				if (y == 2) {
+					Selection_Sort();
+				}
 			}
-		}
-		else if (x == 45) {
-			if (y == 2) {
-				Breadth_first_search();
+			else if (x == 45) {
+				if (y == 2) {
+					Breadth_first_search();
+				}
 			}
-		}
 
-		if (x == 10) {
-			if (y == 4) {
-				Insertion_Sort();
+			if (x == 10) {
+				if (y == 4) {
+					Insertion_Sort();
+				}
 			}
-		}
-		else if (x == 45) {
-			if (y == 4) {
-				Kruskal_Algorithm();
+			else if (x == 45) {
+				if (y == 4) {
+					Kruskal_Algorithm();
+				}
 			}
-		}
 
-		if (x == 10) {
-			if (y == 6) {
-				Merge_Sort();
+			if (x == 10) {
+				if (y == 6) {
+					Merge_Sort();
+				}
 			}
-		}
-		else if (x == 45) {
-			if (y == 6) {
-				Prims_Algorithm();
+			else if (x == 45) {
+				if (y == 6) {
+					Prims_Algorithm();
+				}
 			}
-		}
 
-		if (x == 10) {
-			if (y == 8) {
-				Quick_Sort();
+			if (x == 10) {
+				if (y == 8) {
+					Quick_Sort();
+				}
 			}
-		}
-		else if (x == 45) {
-			if (y == 8) {
-				Topological_sort();
+			else if (x == 45) {
+				if (y == 8) {
+					Topological_sort();
+				}
 			}
-		}
 
-		if (x == 10) {
-			if (y == 8) {
-				Quick_Sort();
+			if (x == 10) {
+				if (y == 10) {
+					Shell_Sort();
+				}
 			}
-		}
-
-
-		if (x == 10) {
-			if (y == 10) {
-				Shell_Sort();
+			else if (x == 45) {
+				if (y == 10) {
+					AStar_Algorithm();
+				}
 			}
-		}
 
 
-		if (x == 10) {
-			if (y == 12) {
-				Heap_Sort();
+			if (x == 10) {
+				if (y == 12) {
+					Heap_Sort();
+				}
 			}
-		}
-
-
-		if (x == 10) {
-			if (y == 14) {
-				Radix_Sort();
+			else if (x == 45) {
+				if (y == 12) {
+					Genetic_Algorithm();
+				}
 			}
+
+
+			if (x == 10) {
+				if (y == 14) {
+					Radix_Sort();
+				}
+			}
+			else if (x == 45) {
+				if (y == 14) {
+					State_Space_Search();
+				}
+			}
+
+
+
 		}
+		else if (menuCode == 20) {
+			// 나가기
+			exit(0);
 
-
-
-	}
-	else if (menuCode == 20) {
-		// 나가기
-		return 0;
-
+		}
 	}
 }
 
@@ -222,15 +241,13 @@ void previousmenuScreen() {
 		}
 
 		if (x == 10) {
-			if (y == 8) {
-				Quick_Sort();
-			}
-		}
-
-
-		if (x == 10) {
 			if (y == 10) {
 				Shell_Sort();
+			}
+		}
+		else if (x == 45) {
+			if (y == 10) {
+				AStar_Algorithm();
 			}
 		}
 
@@ -240,11 +257,21 @@ void previousmenuScreen() {
 				Heap_Sort();
 			}
 		}
+		else if (x == 45) {
+			if (y == 12) {
+				Genetic_Algorithm();
+			}
+		}
 
 
 		if (x == 10) {
 			if (y == 14) {
 				Radix_Sort();
+			}
+		}
+		else if (x == 45) {
+			if (y == 14) {
+				State_Space_Search();
 			}
 		}
 		system("cls");
@@ -361,6 +388,9 @@ int menuDraw() {
 			return  x - 46; // 엔터를 누르면 메뉴 선택 완료를 나타내는 값 반환 후 함수 종료
 		}
 		}
+		if (key == SUBMIT) {
+			break; // 메뉴 선택이 완료되면 루프를 빠져나가도록 추가
+		}
 	}
 }
 
@@ -404,6 +434,9 @@ int ChooseDraw() {
 	gotoxy(x + 35, y + 4); printf("   크루스칼 알고리즘");
 	gotoxy(x + 35, y + 6); printf("   프림 알고리즘");
 	gotoxy(x + 35, y + 8); printf("   위상 알고리즘");
+	gotoxy(x + 35, y + 10); printf("   에이스타 알고리즘");
+	gotoxy(x + 35, y + 12); printf("   유전자 알고리즘");
+	gotoxy(x + 35, y + 14); printf("   상태공간 알고리즘");
 	gotoxy(x + 92, y + 22); printf("    이동: ◀▲▼▶");
 	gotoxy(x + 91, y + 23); printf("     선택: ENTER");
 	gotoxy(x + 90, y + 24); printf("  뒤로가기: DELETE");
@@ -413,7 +446,7 @@ int ChooseDraw() {
 		int key = keyControl();// 키보드 입력 받기
 		switch (key) {
 		case DOWN: {
-			if ((x == 44 || x == 45) && y < 13) {
+			if ((x == 44 || x == 45) && y < 19) {
 				gotoxy(x, y);
 				printf("  "); // 화면을 지우고
 				y += 2; // y 좌표를 아래로 이동
@@ -1122,7 +1155,7 @@ void SelectionSwap(int a, int b) { // 여기서부터 시작
 }
 
 void Insertion_Sort() {
-	system("mode con cols=120 lines=50 | title Selection_Sort");
+	system("mode con cols=120 lines=50 | title Insertion_Sort()");
 	system("cls");
 	printf("\n\n\n");
 	puts("  IIIII   N    N    SSSSS    EEEEE   RRRRR    TTTTT   IIIII    OOO     N    N        SSSSS      OOO     RRRRR    TTTTT ");
@@ -1392,7 +1425,7 @@ void merge_sort(int list[], int left, int right, int n) {
 }
 
 void Merge_Sort() {
-	system("mode con cols=120 lines=50 | title Selection_Sort");
+	system("mode con cols=120 lines=50 | title Merge_Sort()");
 	system("cls");
 	printf("\n\n\n");
 	puts("                M       M   EEEEEE    RRRRR     GGGG    EEEEE         SSSSS     OOOO    RRRRRR    TTTTT  ");
@@ -1603,7 +1636,7 @@ void quick_sort(int list[], int left, int right, int n) {
 }
 
 void Quick_Sort() {
-	system("mode con cols=120 lines=50 | title Selection_Sort");
+	system("mode con cols=120 lines=50 | title Quick_Sort()");
 	system("cls");
 	printf("\n\n\n");
 	puts("                       QQQ    U   U   IIIII    CCCC   K   K         SSSSS     OOO    RRRR    TTTTT");
@@ -1705,7 +1738,7 @@ void shell_Sort(int arr[], int n) {
 
 
 void Shell_Sort() {
-	system("mode con cols=120 lines=50 | title Selection_Sort");
+	system("mode con cols=120 lines=50 | title Shell_Sort()");
 	system("cls");
 	printf("\n\n\n");
 	puts("                      SSSSS    H    H   EEEEEE   L       L              SSSSS     OOO    RRRR    TTTTT");
@@ -1814,7 +1847,7 @@ void heapSort(int arr[], int n) {
 }
 
 void Heap_Sort() {
-	system("mode con cols=120 lines=50 | title Selection_Sort");
+	system("mode con cols=120 lines=50 | title Heap_Sort()");
 	system("cls");
 	printf("\n\n\n");
 	puts("                      H    H   EEEEEE       A       PPPPP             SSSSS     OOO    RRRR    TTTTT");
@@ -1929,9 +1962,8 @@ void radixSort(int arr[], int n) {
 
 	}
 }
-
 void Radix_Sort() {
-	system("mode con cols=120 lines=50 | title Selection_Sort");
+	system("mode con cols=120 lines=50 | title Radix_Sort()");
 	system("cls");
 	printf("\n\n\n");
 	puts("          RRRRR          A        DDDDD       IIIII    X     X                 SSSSS     OOO    RRRR    TTTTT");
@@ -2010,27 +2042,27 @@ typedef struct {
 } DStack;
 
 // 스택 초기화 함수
-void initializeStack(DStack *stack) {
+void initializeStack(DStack* stack) {
 	stack->top = -1;
 }
 
 // 스택이 비어있는지 확인하는 함수
-bool isEmpty(DStack *stack) {
+bool isEmpty(DStack* stack) {
 	return stack->top == -1;
 }
 
 // 스택에 요소를 추가하는 함수
-void push(DStack *stack, int value) {
+void push(DStack* stack, int value) {
 	stack->data[++stack->top] = value;
 }
 
 // 스택에서 요소를 제거하고 반환하는 함수
-int pop(DStack *stack) {
+int pop(DStack* stack) {
 	return stack->data[stack->top--];
 }
 
 // 깊이 우선 탐색 함수
-void DFS(DGraph *graph, int startVertex) {
+void DFS(DGraph* graph, int startVertex) {
 	DStack stack;
 	initializeStack(&stack);
 
@@ -2052,8 +2084,8 @@ void DFS(DGraph *graph, int startVertex) {
 	}
 }
 
-int Depth_First_Search() {
-	system("mode con cols=150 lines=50 | title Selection_Sort");
+void Depth_First_Search() {
+	system("mode con cols=150 lines=50 | title Depth_First_Search()");
 	system("cls");
 	printf("\n\n\n");
 	puts("       DDDDD    EEEEE   PPPP   TTTTT   H   H       FFFFF   IIIII   RRRR     SSSSS   TTTTT       SSSSS   EEEEE      A      RRRR      CCC  H   H");
@@ -2082,29 +2114,31 @@ int Depth_First_Search() {
 	DGraph graph;
 
 	// 정점의 개수 입력
-	printf("Enter the number of vertices: ");
+	printf("정점 개수를 입력하시오:  ");
 	scanf_s("%d", &graph.numVertices);
 	gotoxy(x + 16, y + 4);
 	// 정점 입력
-	printf("Enter the vertices:\n");
+	printf("정점 개수만큼 정점을 입력하시오: \n");
 	for (int i = 0; i < graph.numVertices; ++i) {
-		gotoxy(x + 32 + (i + 2) * 2, y + 4);
+		gotoxy(x + 32 + (i + 10) * 2, y + 4);
 		scanf_s("%d", &graph.vertices[i]);
 	}
-
+	gotoxy(x + 40, y + 8);
+	printf("ex) 0 1 1 0");
 	gotoxy(x + 16, y + 6);
 	// 간선 입력
-	printf("Enter the adjacency matrix (1 if there is an edge, 0 otherwise):\n");
+	printf("간선 입력 (간선이 존재 1, 아니면 0):\n");
 	for (int i = 0; i < graph.numVertices; ++i) {
 		for (int j = 0; j < graph.numVertices; ++j) {
-			gotoxy(x + 82, y + 6 + (i * 2));
+			gotoxy(x + 58, y + 6 + (i * 2));
 			scanf_s("%d", &graph.edges[i][j]);
+
 		}
 	}
-	gotoxy(x + 16, y + 26);
+	gotoxy(x + 90, y + 26);
 	// 깊이 우선 탐색 실행
-	printf("DFS starting from vertex 0:\n");
-	gotoxy(x + 46, y + 26);
+	printf("깊이 우선 탐색(DFS)의 결과 :\n");
+	gotoxy(x + 120, y + 26);
 	DFS(&graph, 0);
 
 
@@ -2136,18 +2170,18 @@ typedef struct {
 } BQueue;
 
 // 큐 초기화 함수
-void initializeQueue(BQueue *queue) {
+void initializeQueue(BQueue* queue) {
 	queue->front = -1;
 	queue->rear = -1;
 }
 
 // 큐가 비어있는지 확인하는 함수
-bool BisEmpty(BQueue *queue) {
+bool BisEmpty(BQueue* queue) {
 	return queue->front == -1;
 }
 
 // 큐에 요소를 추가하는 함수
-void enqueue(BQueue *queue, int value) {
+void enqueue(BQueue* queue, int value) {
 	if (BisEmpty(queue)) {
 		queue->front = 0;
 		queue->rear = 0;
@@ -2159,7 +2193,7 @@ void enqueue(BQueue *queue, int value) {
 }
 
 // 큐에서 요소를 제거하고 반환하는 함수
-int dequeue(BQueue *queue) {
+int dequeue(BQueue* queue) {
 	int value = queue->data[queue->front];
 	if (queue->front == queue->rear) {
 		// 큐에 마지막 요소가 남아있을 경우
@@ -2173,7 +2207,7 @@ int dequeue(BQueue *queue) {
 }
 
 // 너비 우선 탐색 함수
-void BFS(BGraph *graph, int startVertex) {
+void BFS(BGraph* graph, int startVertex) {
 	BQueue queue;
 	initializeQueue(&queue);
 
@@ -2195,8 +2229,8 @@ void BFS(BGraph *graph, int startVertex) {
 	}
 }
 
-int Breadth_first_search() {
-	system("mode con cols=150 lines=50 | title Selection_Sort");
+void Breadth_first_search() {
+	system("mode con cols=150 lines=50 | title Breadth_first_search()");
 	system("cls");
 	printf("\n\n\n");
 	puts("   BBBB  RRRR   EEEEE      A     DDDD  TTTTT  H   H      FFFFF   IIIII   RRRR     SSSSS   TTTTT       SSSSS   EEEEE      A      RRRR      CCC  H   H");
@@ -2223,29 +2257,30 @@ int Breadth_first_search() {
 	BGraph graph;
 
 	// 정점의 개수 입력
-	printf("Enter the number of vertices: ");
+	printf("정점 개수를 입력하시오:  ");
 	scanf_s("%d", &graph.numVertices);
 	gotoxy(x + 16, y + 4);
 	// 정점 입력
-	printf("Enter the vertices:\n");
+	printf("정점 개수만큼 정점을 입력하시오: \n");
 	for (int i = 0; i < graph.numVertices; ++i) {
-		gotoxy(x + 32 + (i + 2) * 2, y + 4);
+		gotoxy(x + 32 + (i + 10) * 2, y + 4);
 		scanf_s("%d", &graph.vertices[i]);
 	}
-
+	gotoxy(x + 40, y + 8);
+	printf("ex) 0 1 1 0");
 	gotoxy(x + 16, y + 6);
 	// 간선 입력
-	printf("Enter the adjacency matrix (1 if there is an edge, 0 otherwise):\n");
+	printf("간선 입력 (간선이 존재 1, 아니면 0):\n");
 	for (int i = 0; i < graph.numVertices; ++i) {
 		for (int j = 0; j < graph.numVertices; ++j) {
-			gotoxy(x + 82, y + 6 + (i * 2));
+			gotoxy(x + 58, y + 6 + (i * 2));
 			scanf_s("%d", &graph.edges[i][j]);
 		}
 	}
-	gotoxy(x + 16, y + 26);
+	gotoxy(x + 90, y + 26);
 	// 깊이 우선 탐색 실행
-	printf("DFS starting from vertex 0:\n");
-	gotoxy(x + 46, y + 26);
+	printf("너비 우선 탐색(BFS)의 결과 :\n");
+	gotoxy(x + 120, y + 26);
 	BFS(&graph, 0);
 
 
@@ -2264,6 +2299,7 @@ int Breadth_first_search() {
 
 typedef struct {
 	int src, dest, weight;
+
 } KEdge;
 
 // 그래프 구조체 정의
@@ -2272,12 +2308,13 @@ typedef struct {
 	int rank[MAX_VERTICES];
 	int numVertices, numEdges;
 	KEdge edges[MAX_EDGES];
+
 } KGraph;
 
 // 그래프 초기화 함수
-void initializeGraph(KGraph *graph, int numVertices, int numEdges) {
+void initializeGraph(KGraph* graph, int numVertices, int numEdges) {
 	if (numVertices <= 0 || numVertices > MAX_VERTICES || numEdges <= 0 || numEdges > MAX_EDGES) {
-		printf("Invalid number of vertices or edges.\n");
+		printf("정점 및 간선 수 오류.\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -2291,9 +2328,9 @@ void initializeGraph(KGraph *graph, int numVertices, int numEdges) {
 }
 
 // 간선 추가 함수
-void addEdge(KGraph *graph, int src, int dest, int weight, int index) {
+void addEdge(KGraph* graph, int src, int dest, int weight, int index) {
 	if (index < 0 || index >= MAX_EDGES) {
-		printf("Invalid edge index.\n");
+		printf("간선 인덱스 오류.\n");
 		exit(EXIT_FAILURE);
 	}
 	graph->edges[index].src = src;
@@ -2302,12 +2339,12 @@ void addEdge(KGraph *graph, int src, int dest, int weight, int index) {
 }
 
 // 비교 함수 (간선의 무게에 따라 정렬하기 위함)
-int compareEdges(const void *a, const void *b) {
-	return ((KEdge *)a)->weight - ((KEdge *)b)->weight;
+int compareEdges(const void* a, const void* b) {
+	return ((KEdge*)a)->weight - ((KEdge*)b)->weight;
 }
 
 // 부모 찾기 함수 (Union-Find에서 사용)
-int findParent(KGraph *graph, int vertex) {
+int findParent(KGraph* graph, int vertex) {
 	if (graph->parent[vertex] != vertex) {
 		graph->parent[vertex] = findParent(graph, graph->parent[vertex]);
 	}
@@ -2315,7 +2352,7 @@ int findParent(KGraph *graph, int vertex) {
 }
 
 // 합집합 연산 함수 (Union-Find에서 사용)
-void unionSets(KGraph *graph, int x, int y) {
+void unionSets(KGraph* graph, int x, int y) {
 	int xRoot = findParent(graph, x);
 	int yRoot = findParent(graph, y);
 
@@ -2332,11 +2369,11 @@ void unionSets(KGraph *graph, int x, int y) {
 }
 
 // 크루스칼 알고리즘 함수
-void kruskal(KGraph *graph) {
+void kruskal(KGraph* graph) {
 	KEdge result[MAX_VERTICES]; // 최소 신장 트리를 저장할 배열
-	int resultIndex = 0; // 최소 신장 트리 배열의 인덱스
-
-						 // 간선을 가중치에 따라 정렬
+	int resultIndex = 0;
+	int x = 0, y = 15;
+	// 간선을 가중치에 따라 정렬
 	qsort(graph->edges, graph->numEdges, sizeof(KEdge), compareEdges);
 
 	for (int i = 0; i < graph->numEdges; ++i) {
@@ -2349,16 +2386,17 @@ void kruskal(KGraph *graph) {
 			unionSets(graph, src, dest);
 		}
 	}
-
+	gotoxy(x + 90, y + 26);
 	// 최소 신장 트리 출력
-	printf("Edges of the Minimum Spanning Tree:\n");
+	printf("크루스칼 알고리즘 결과 :\n");
 	for (int i = 0; i < resultIndex; ++i) {
+		gotoxy(x + 120, y + 26 + (i * 2));
 		printf("(%d, %d) - %d\n", result[i].src + 1, result[i].dest + 1, result[i].weight);
 	}
 }
 
-int Kruskal_Algorithm() {
-	system("mode con cols=150 lines=50 | title Selection_Sort");
+void Kruskal_Algorithm() {
+	system("mode con cols=150 lines=50 | title Kruskal_Algorithm()");
 	system("cls");
 	printf("\n\n\n");
 	puts("             K    k  RRRR   U   U  SSSS  K   K     A     L              A      L      GGGG   OOO  RRRR   IIIII TTTTT H   H  M         M");
@@ -2384,20 +2422,26 @@ int Kruskal_Algorithm() {
 	gotoxy(x + 37, y);
 	printf("사이클 발생시키지 않을 경우 최소신장트리에 포함, 사이클 발생할 경우 포함하지 않는다.");
 
-
+	gotoxy(x + 16, y + 4);
+	printf("ex) 4 5");
 	gotoxy(x + 16, y + 2);
 	KGraph graph;
 	int numVertices, numEdges;
+
 	// 정점의 개수 입력
-	printf("Enter the number of vertices and edges: ");
+	printf("정점, 간선의 개수를 입력: ");
 	scanf_s("%d %d", &numVertices, &numEdges);
-	gotoxy(x + 16, y + 4);
+
 
 	initializeGraph(&graph, numVertices, numEdges);
 
-	printf("Enter the edges (src dest weight):\n");
+	gotoxy(x + 16, y + 8);
+	printf("ex) 0 1 1");
+	gotoxy(x + 16, y + 6);
+	printf("간선을 입력하세요 (시작점, 끝점, 가중치):\n");
+
 	for (int i = 0; i < numEdges; ++i) {
-		gotoxy(x + 52, y + 4 + (i * 2));
+		gotoxy(x + 60, y + 6 + (i * 2));
 		int src, dest, weight;
 		scanf_s("%d %d %d", &src, &dest, &weight);
 		addEdge(&graph, src - 1, dest - 1, weight, i);
@@ -2406,7 +2450,7 @@ int Kruskal_Algorithm() {
 
 
 
-	gotoxy(x + 16, y + 26);
+	gotoxy(x + 54, y + 26);
 
 	kruskal(&graph);
 
@@ -2435,7 +2479,7 @@ typedef struct {
 } PGraph;
 
 // 그래프 초기화 함수
-void PinitializeGraph(PGraph *g, int numVertices) {
+void PinitializeGraph(PGraph* g, int numVertices) {
 	g->numVertices = numVertices;
 
 	// 그래프의 간선 가중치 초기화
@@ -2454,13 +2498,13 @@ void PinitializeGraph(PGraph *g, int numVertices) {
 }
 
 // 정점을 그래프에 추가하는 함수
-void PaddEdge(PGraph *g, int src, int dest, int weight) {
+void PaddEdge(PGraph* g, int src, int dest, int weight) {
 	g->graph[src][dest] = weight;
 	g->graph[dest][src] = weight;
 }
 
 // 프림 알고리즘 함수
-void prim(PGraph *g, int startVertex) {
+void prim(PGraph* g, int startVertex) {
 	g->vertices[startVertex].weight = 0;
 
 	for (int i = 0; i < g->numVertices - 1; ++i) {
@@ -2486,8 +2530,8 @@ void prim(PGraph *g, int startVertex) {
 }
 
 
-int Prims_Algorithm() {
-	system("mode con cols=150 lines=50 | title Selection_Sort");
+void Prims_Algorithm() {
+	system("mode con cols=150 lines=50 | title Prims_Algorithm()");
 	system("cls");
 	printf("\n\n\n");
 	puts("             PPPP   RRRR    IIIII   M       M    SSSS                  A      L      GGGG   OOO  RRRR   IIIII TTTTT H   H  M         M");
@@ -2513,40 +2557,44 @@ int Prims_Algorithm() {
 	gotoxy(x + 37, y);
 	printf("2번 과정을 MST 집합의 원소 개수가 그래프의 정점의 개수가 될 때까지 반복한다.");
 
-
+	gotoxy(x + 16, y + 4);
+	printf("ex) 4 5");
 	gotoxy(x + 16, y + 2);
 	PGraph graph;
 	int numVertices, numEdges;
 	// 정점의 개수 입력
-	printf("Enter the number of vertices and edges: ");
+	printf("정점, 간선의 개수를 입력: ");
 	scanf_s("%d %d", &numVertices, &numEdges);
-	gotoxy(x + 16, y + 4);
+
 
 	PinitializeGraph(&graph, numVertices);
-
-	printf("Enter the edges (src dest weight):\n");
+	gotoxy(x + 16, y + 8);
+	printf("ex) 0 1 1");
+	gotoxy(x + 16, y + 6);
+	printf("간선을 입력하세요(시작점, 끝점, 가중치) :\n");
 	for (int i = 0; i < numEdges; ++i) {
-		gotoxy(x + 52, y + 4 + (i * 2));
+		gotoxy(x + 60, y + 6 + (i * 2));
 		int src, dest, weight;
 		scanf_s("%d %d %d", &src, &dest, &weight);
 		PaddEdge(&graph, src - 1, dest - 1, weight);
 	}
-
+	printf("\n                ");
 	int startVertex;
-	printf("Enter the starting vertex: ");
+	printf("시작 정점을 입력:   ");
 	scanf_s("%d", &startVertex);
 
 
 	gotoxy(x + 16, y + 26);
 
 	prim(&graph, startVertex - 1);
-
+	gotoxy(x + 90, y + 26);
 	// 최소 신장 트리 출력
-	printf("Edges of the Minimum Spanning Tree:\n");
+	printf("프림 알고리즘 결과 :    \n");
 	for (int i = 0; i < graph.numVertices; ++i) {
-		if (i != startVertex) {
-			printf("(%d, %d)\n", i + 1, graph.vertices[i].weight);
-		}
+		gotoxy(x + 110, y + 26 + (i * 2));
+
+		printf("(%d, %d)\n", i + 1, graph.vertices[i].weight);
+
 	}
 
 
@@ -2653,8 +2701,8 @@ void freeGraph(TGraph* graph) {
 }
 
 
-int Topological_sort() {
-	system("mode con cols=150 lines=50 | title Selection_Sort");
+void Topological_sort() {
+	system("mode con cols=150 lines=50 | title Topological_sort()");
 	system("cls");
 	printf("\n\n\n");
 	puts("             TTTTT  OOOO   PPPP   OOOO   L      OOOO    GGGG   IIIII   CCCC      A      L               SSSS    OOOO   RRRR    TTTTT ");
@@ -2685,24 +2733,24 @@ int Topological_sort() {
 	TGraph* graph;
 	int numVertices, numEdges;
 	// 정점의 개수 입력
-	printf("Enter the number of vertices: ");
+	printf("정점의 개수를 입력하시오 :   ");
 	scanf_s("%d", &numVertices);
 	gotoxy(x + 16, y + 4);
 
 	graph = TinitializeGraph(numVertices);
 
-	printf("Enter the number of edges: ");
+	printf("간선의 개수를 입력하시오 :   ");
 	scanf_s("%d", &numEdges);
 	gotoxy(x + 16, y + 6);
-	printf("Enter the edges (src dest):\n");
+	printf("간선 입력 (시작 끝):\n");
 	for (int i = 0; i < numEdges; ++i) {
-		gotoxy(x + 46, y + 6 + (i * 2));
+		gotoxy(x + 38, y + 6 + (i * 2));
 		int src, dest;
 		scanf_s("%d %d", &src, &dest);
 		TaddEdge(graph, src, dest);
 	}
-	gotoxy(x + 16, y + 26);
-	printf("Topological Sort: ");
+	gotoxy(x + 90, y + 26);
+	printf("위상 알고리즘 결과: ");
 	topologicalSort(graph);
 
 
@@ -2723,6 +2771,486 @@ int Topological_sort() {
 
 }
 
+
+#define ROWS 5
+#define COLS 5
+
+typedef struct Anode {
+	int x, y;
+	struct Anode* parent;
+	int f, g, h;
+} ANode;
+
+typedef struct {
+	ANode* heap[ROWS * COLS];
+	int size;
+} APriorityQueue;
+
+// 함수 선언
+ANode* createNode(int x, int y, ANode* parent, int g, int h);
+APriorityQueue* createPriorityQueue();
+void Apush(APriorityQueue* pq, ANode* node);
+ANode* Apop(APriorityQueue* pq);
+int heuristic(int x1, int y1, int x2, int y2);
+void AStar(int grid[ROWS][COLS], int start[2], int end[2]);
+
+// 함수 구현
+ANode* createNode(int x, int y, ANode* parent, int g, int h) {
+	ANode* node = (ANode*)malloc(sizeof(ANode));
+	node->x = x;
+	node->y = y;
+	node->parent = parent;
+	node->g = g;
+	node->h = h;
+	node->f = g + h;
+	return node;
+}
+
+APriorityQueue* createPriorityQueue() {
+	APriorityQueue* pq = (APriorityQueue*)malloc(sizeof(APriorityQueue));
+	pq->size = 0;
+	return pq;
+}
+
+void Apush(APriorityQueue* pq, ANode* node) {
+	pq->heap[pq->size] = node;
+	int i = pq->size;
+	pq->size++;
+
+	while (i != 0) {
+		int j = (i - 1) / 2;
+		if (pq->heap[i]->f >= pq->heap[j]->f) break;
+		ANode* temp = pq->heap[i];
+		pq->heap[i] = pq->heap[j];
+		pq->heap[j] = temp;
+		i = j;
+	}
+}
+
+ANode* Apop(APriorityQueue* pq) {
+	ANode* node = pq->heap[0];
+	pq->size--;
+	pq->heap[0] = pq->heap[pq->size];
+
+	int i = 0;
+	while (1) {
+		int left = 2 * i + 1;
+		int right = 2 * i + 2;
+		int min = i;
+
+		if (left < pq->size && pq->heap[min]->f > pq->heap[left]->f)
+			min = left;
+		if (right < pq->size && pq->heap[min]->f > pq->heap[right]->f)
+			min = right;
+		if (min == i) break;
+
+		ANode* temp = pq->heap[i];
+		pq->heap[i] = pq->heap[min];
+		pq->heap[min] = temp;
+		i = min;
+	}
+
+	return node;
+}
+
+int heuristic(int x1, int y1, int x2, int y2) {
+	return abs(x1 - x2) + abs(y1 - y2);
+}
+
+void AStar(int grid[ROWS][COLS], int start[2], int end[2]) {
+	int gx = 0, gy = 15;
+	APriorityQueue* openList = createPriorityQueue();
+	ANode* closedList[ROWS][COLS] = { 0 };
+	ANode* startNode = createNode(start[0], start[1], NULL, 0, heuristic(start[0], start[1], end[0], end[1]));
+
+	Apush(openList, startNode);
+	gotoxy(gx + 90, gy + 6);
+	printf("<이동 순서 - 아래부터 시작>");
+	while (openList->size > 0) {
+		ANode* currentNode = Apop(openList);
+		closedList[currentNode->x][currentNode->y] = currentNode;
+
+		if (currentNode->x == end[0] && currentNode->y == end[1]) {
+			ANode* pathNode = currentNode;
+			while (pathNode) {
+				gotoxy(gx + 100, gy + 10);
+				printf("(%d, %d)", pathNode->x, pathNode->y);
+				gy += 2;  // pathNode 가 변경될 때마다 gy 값을 증가시킵니다.
+				pathNode = pathNode->parent;
+			}
+			break;
+		}
+
+		int dx[4] = { -1, 0, 1, 0 };
+		int dy[4] = { 0, 1, 0, -1 };
+		for (int i = 0; i < 4; i++) {
+			int nx = currentNode->x + dx[i];
+			int ny = currentNode->y + dy[i];
+
+			if (nx < 0 || ny < 0 || nx >= ROWS || ny >= COLS) continue;
+			if (grid[nx][ny] || closedList[nx][ny]) continue;
+
+			ANode* newNode = createNode(nx, ny, currentNode, currentNode->g + 1, heuristic(nx, ny, end[0], end[1]));
+			Apush(openList, newNode);
+		}
+
+	}
+}
+
+void AStar_Algorithm() {
+	system("mode con cols=150 lines=50 | title AStar_Algorithm()");
+	system("cls");
+	printf("\n\n\n");
+	puts("                 A       SSSS    TTTTT      A       RRRR                    A      L      GGGG   OOO  RRRR   IIIII TTTTT H   H  M         M");
+	puts("                A A     S          T       A A      R   R                  A A     L     G      O   O R   R    I     T   H   H  M M      MM");
+	puts("               AAAAA     SSSS      T      AAAAA     RRRR                  AAAAA    L     G   GG O   O RRRR     I     T   HHHHH  M  M    M M");
+	puts("              A     A        S     T     A     A    R   R                A     A   L     G    G O   O R   R    I     T   H   H  M   M  M  M");
+	puts("             A       A   SSSS      T    A       A   R    R              A       A  LLLLL  GGGG   OOO  R    R IIIII   T   H   H  M    M    M");
+	puts("                                                                                           ");
+	printf("                                                                                    ");
+	printf("");
+	gsidebar();
+	int x = 0;
+	int y = 15;
+	int n = 0;
+	gotoxy(x + 63, y - 4);
+	printf("<설명 - 에이스타 알고리즘>\n");
+	gotoxy(x + 35, y - 3);
+	printf("주어진 출발 꼭짓점에서 목표 꼭짓점까지 가는 최단 경로를 나타내는 그래프 탐색 알고리즘");
+	gotoxy(x + 48, y - 2);
+	printf("시작 노드에서 출발하여 이웃하는 노드들을 우선순위 큐에 추가");
+	gotoxy(x + 14, y - 1);
+	printf("우선순위 큐에서 가장 비용이 낮은 노드를 선택하고, 그 노드의 이웃 노드들에 대해 현재 거리 비용과 예상 거리 비용을 계산하여 큐에 추가");
+	gotoxy(x + 42, y);
+	printf("목표 노드가 선택되거나 모든 가능한 경로를 탐색할 때까지 이 과정을 반복");
+
+	int grid[ROWS][COLS] = {
+		{ 0, 1, 0, 0, 0 },
+		{ 0, 1, 0, 1, 0 },
+		{ 0, 0, 0, 0, 0 },
+		{ 0, 1, 1, 1, 1 },
+		{ 0, 0, 0, 0, 0 }
+	};
+	int start[2] = { 0, 0 };
+	int end[2] = { 4, 4 };
+
+	gotoxy(x + 30, y + 6);
+	printf("<격자 - 2차원 배열>");
+	gotoxy(x + 30, y + 10);
+	printf("{0, 1, 0, 0, 0}");
+	gotoxy(x + 30, y + 12);
+	printf("{0, 1, 0, 1, 0}");
+	gotoxy(x + 30, y + 14);
+	printf("{0, 0, 0, 0, 0}");
+	gotoxy(x + 30, y + 16);
+	printf("{0, 1, 1, 1, 1}");
+	gotoxy(x + 30, y + 18);
+	printf("{0, 0, 0, 0, 0}");
+	AStar(grid, start, end);
+
+
+
+
+	//free(arr);
+	while (1) {
+		int key = keyControl();
+		if (key == DELETE) {
+			previousmenuScreen();
+			break;
+		}
+	}
+
+}
+#define POPULATION_SIZE 100
+#define GENES "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789, .-;:_!\"#%&/()=?@${[]}"
+#define TARGET "Hello, World!"
+#define MAX_PRINT_COUNT 10
+
+typedef struct
+{
+	char dna[13];
+	int fitness;
+} Individual;
+
+Individual population[POPULATION_SIZE];
+
+char random_gene() {
+	int len = strlen(GENES);
+	int r = rand() % len;
+	return GENES[r];
+}
+
+int calculate_fitness(Individual individual) {
+	int fitness = 0;
+	for (int i = 0; i < strlen(TARGET); i++) {
+		if (individual.dna[i] != TARGET[i]) {
+			fitness++;
+		}
+	}
+	return fitness;
+}
+
+Individual create_gnome() {
+	Individual new_individual;
+	for (int i = 0; i < strlen(TARGET); i++) {
+		new_individual.dna[i] = random_gene();
+	}
+	new_individual.dna[strlen(TARGET)] = '\0';
+	new_individual.fitness = calculate_fitness(new_individual);
+	return new_individual;
+}
+
+
+void Genetic_Algorithm() {
+	system("mode con cols=150 lines=50 | title Genetic_Algorithm()");
+	system("cls");
+	printf("\n\n\n");
+	puts("           GGGG   EEEEE  N   N  EEEEE  TTTTT  IIIII   CCCC                 A      L      GGGG   OOO  RRRR   IIIII TTTTT H   H  M         M");
+	puts("          G       E      NN  N  E        T      I    C                    A A     L     G      O   O R   R    I     T   H   H  M M      MM");
+	puts("          G   GG  EEEEE  N N N  EEEEE    T      I    C                   AAAAA    L     G   GG O   O RRRR     I     T   HHHHH  M  M    M M");
+	puts("          G    G  E      N  NN  E        T      I    C                  A     A   L     G    G O   O R   R    I     T   H   H  M   M  M  M");
+	puts("           GGGG   EEEEE  N   N  EEEEE    T    IIIII   CCCC             A       A  LLLLL  GGGG   OOO  R    R IIIII   T   H   H  M    M    M");
+	puts("                                                                                           ");
+	printf("                                                                                    ");
+	printf("");
+	gsidebar();
+	int x = 0;
+	int y = 15;
+	int n = 0;
+	gotoxy(x + 63, y - 4);
+	printf("<설명 - 유전자 알고리즘>\n");
+	gotoxy(x + 60, y - 3);
+	printf("생물의 번식을 모사한 진화 알고리즘");
+	gotoxy(x + 48, y - 2);
+	printf("랜덤한 개체 집합을 생성하고 각 개체의 적합도를 평가");
+	gotoxy(x + 44, y - 1);
+	printf(" 적합도에 기반하여 개체를 선택하고 교차시켜 새로운 개체를 생성");
+	gotoxy(x + 34, y);
+	printf("일부 개체에 돌연변이를 적용하여 새로운 다양성을 도입하고, 이후 세대를 현재 세대로 대체");
+
+	srand(time(0));
+	int gx = 0, gy = 15;
+	for (int i = 0; i < POPULATION_SIZE; i++) {
+		population[i] = create_gnome();
+	}
+	gotoxy(x + 30, y + 6);
+	printf("<목표 - Hello, World!>");
+	int generation = 0;
+	int print_count = 0;
+	gotoxy(x + 80, y + 6);
+	printf("<출력 - 10세대 예시>");
+	while (print_count < MAX_PRINT_COUNT) {
+		gotoxy(gx + 80, gy + 8);
+		printf("Generation: %d, Best fitness: %d, DNA: %s\n", generation, population[0].fitness, population[0].dna);
+		gy += 2;
+		print_count++;
+
+		if (population[0].fitness <= 0) {
+			break;
+		}
+
+		Individual new_generation[POPULATION_SIZE];
+
+		for (int i = 0; i < POPULATION_SIZE; i++) {
+			// Selection
+			Individual parent1 = population[rand() % POPULATION_SIZE];
+			Individual parent2 = population[rand() % POPULATION_SIZE];
+
+			// Crossover
+			Individual offspring;
+			for (int i = 0; i < strlen(TARGET); i++) {
+				float p = (rand() % 100) / 100.0;
+				if (p < 0.45)
+					offspring.dna[i] = parent1.dna[i];
+				else if (p < 0.9)
+					offspring.dna[i] = parent2.dna[i];
+				else
+					offspring.dna[i] = random_gene();
+			}
+			offspring.dna[strlen(TARGET)] = '\0';
+			offspring.fitness = calculate_fitness(offspring);
+
+			new_generation[i] = offspring;
+		}
+
+		for (int i = 0; i < POPULATION_SIZE; i++) {
+			population[i] = new_generation[i];
+		}
+		generation++;
+	}
+
+
+
+	//free(arr);
+	while (1) {
+		int key = keyControl();
+		if (key == DELETE) {
+			previousmenuScreen();
+			break;
+		}
+	}
+
+}
+
+#define ROWS 5
+#define COLS 5
+
+typedef struct {
+	int x;
+	int y;
+} Point;
+
+typedef struct {
+	Point data[ROWS * COLS];
+	int front, rear;
+} Queue;
+
+void initializeQueue(Queue* queue) {
+	queue->front = -1;
+	queue->rear = -1;
+}
+
+bool isQueueEmpty(Queue* queue) {
+	return queue->front == -1;
+}
+
+void enqueue(Queue* queue, Point value) {
+	if (isQueueEmpty(queue)) {
+		queue->front = 0;
+	}
+	queue->rear++;
+	queue->data[queue->rear] = value;
+}
+
+Point dequeue(Queue* queue) {
+	Point value = queue->data[queue->front];
+	if (queue->front == queue->rear) {
+		queue->front = -1;
+		queue->rear = -1;
+	}
+	else {
+		queue->front++;
+	}
+	return value;
+}
+
+int maze[ROWS][COLS] = {
+	{ 0, 1, 0, 0, 0 },
+	{ 0, 1, 0, 1, 0 },
+	{ 0, 0, 0, 1, 0 },
+	{ 0, 1, 1, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+Point goal = { 4, 4 };
+Point parent[ROWS][COLS];
+
+void SBFS() {
+	Queue queue;
+	initializeQueue(&queue);
+	int gx = 0, gy = 15;
+	Point start = { 0, 0 };
+	enqueue(&queue, start);
+
+	bool visited[ROWS][COLS] = { false };
+	visited[start.x][start.y] = true;
+
+	while (!isQueueEmpty(&queue)) {
+		Point current = dequeue(&queue);
+
+		if (current.x == goal.x && current.y == goal.y) {
+			gotoxy(gx + 90, gy + 6);
+			printf("<이동 순서 - 아래부터 시작>");
+
+
+			Point path[ROWS * COLS];
+			int pathLength = 0;
+			while (!(current.x == start.x && current.y == start.y)) {
+				path[pathLength++] = current;
+				current = parent[current.x][current.y];
+			}
+			path[pathLength++] = start;
+
+			for (int i = pathLength - 1; i >= 0; --i) {
+				gotoxy(gx + 100, gy + 10 + (i * 2));
+				printf("(%d, %d) ", path[i].x, path[i].y);
+			}
+
+			return;
+		}
+
+		int moves[][2] = { { -1, 0 },{ 1, 0 },{ 0, -1 },{ 0, 1 } };
+		for (int i = 0; i < 4; ++i) {
+			int newX = current.x + moves[i][0];
+			int newY = current.y + moves[i][1];
+
+			if (newX >= 0 && newX < ROWS && newY >= 0 && newY < COLS &&
+				maze[newX][newY] == 0 && !visited[newX][newY]) {
+				Point next = { newX, newY };
+				enqueue(&queue, next);
+				visited[newX][newY] = true;
+				parent[newX][newY] = current;
+			}
+		}
+	}
+
+	printf("Path Not Found!\n");
+}
+
+void State_Space_Search() {
+	system("mode con cols=150 lines=50 | title State_Space_Search()");
+	system("cls");
+	printf("\n\n\n");
+	puts("     SSSS   TTTTT      A      TTTTT   EEEEE       SSSS   PPPP       A       CCCC   EEEEE       SSSSS   EEEEE      A      RRRR      CCC  H   H");
+	puts("    S         T       A A       T     E          S       P   P     A A     C       E          S        E         A A     R   R    C     H   H");
+	puts("     SSSS     T      AAAAA      T     EEEEE       SSSS   PPPP     AAAAA    C       EEEEE       SSSSS   EEEEE    AAAAA    RRRR    C      HHHHH");
+	puts("         S    T     A     A     T     E               S  P       A     A   C       E                S  E       A     A   R   R    C     H   H");
+	puts("     SSSS     T    A       A    T     EEEEE       SSSS   P      A       A   CCCC   EEEEE       SSSSS   EEEEE  A       A  R    R    CCC  H   H");
+	printf("                                                                                    ");
+	printf("");
+	gsidebar();
+	int x = 0;
+	int y = 15;
+	int n = 0;
+	gotoxy(x + 63, y - 4);
+	printf("<설명 - 상태 공간 탐색>\n");
+	gotoxy(x + 35, y - 3);
+	printf("답을 찾아가는 과정을 상태 공간으로 보고, 최적의 집합을 찾아가는 과정");
+	gotoxy(x + 40, y - 2);
+	printf("출발 상태에서 시작하여 목표 상태까지 도달하는 경로를 찾기 위해 초기 상태를 생성");
+	gotoxy(x + 14, y - 1);
+	printf("생성된 상태를 평가하고 가능한 다음 상태들을 생성하여 확장 각 상태는 휴리스틱 함수에 따라 평가");
+	gotoxy(x + 42, y);
+	printf("목표 상태에 도달하거나 최적의 상태를 찾을 때까지 과정 반복");
+
+	gotoxy(x + 30, y + 6);
+	printf("<격자 - 2차원 배열>");
+	gotoxy(x + 30, y + 10);
+	printf("{0, 1, 0, 0, 0}");
+	gotoxy(x + 30, y + 12);
+	printf("{0, 1, 0, 1, 0}");
+	gotoxy(x + 30, y + 14);
+	printf("{0, 0, 0, 1, 0}");
+	gotoxy(x + 30, y + 16);
+	printf("{0, 1, 1, 1, 0}");
+	gotoxy(x + 30, y + 18);
+	printf("{0, 0, 0, 0, 0}");
+
+	SBFS();
+
+
+
+
+	//free(arr);
+	while (1) {
+		int key = keyControl();
+		if (key == DELETE) {
+			previousmenuScreen();
+			break;
+		}
+	}
+
+}
 
 int main() {
 	init();
@@ -2789,16 +3317,15 @@ int main() {
 				}
 			}
 
-			if (x == 10) {
-				if (y == 8) {
-					Quick_Sort();
-				}
-			}
-
 
 			if (x == 10) {
 				if (y == 10) {
 					Shell_Sort();
+				}
+			}
+			else if (x == 45) {
+				if (y == 10) {
+					AStar_Algorithm();
 				}
 			}
 
@@ -2808,6 +3335,11 @@ int main() {
 					Heap_Sort();
 				}
 			}
+			else if (x == 45) {
+				if (y == 12) {
+					Genetic_Algorithm();
+				}
+			}
 
 
 			if (x == 10) {
@@ -2815,7 +3347,12 @@ int main() {
 					Radix_Sort();
 				}
 			}
-		 
+			else if (x == 45) {
+				if (y == 14) {
+					State_Space_Search();
+				}
+			}
+
 
 
 		}
